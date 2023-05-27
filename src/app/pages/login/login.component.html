@@ -1,0 +1,64 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+
+  <div class="container">
+    <div class="content">
+      <h1 class="title">Authorization</h1> <br>
+
+      <div class="input">
+        <label><b>Email:</b></label> <br>
+        <input class="text-box"
+               type="text"
+               placeholder="Enter email"
+               formControlName="email"> <br>
+
+
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+
+          <div>
+            <p *ngIf="email.errors?.required" class="invalid">
+              Enter email
+            </p>
+
+            <p *ngIf="email.errors?.minlength" class="invalid">
+              Minimal length: {{ email.errors?.minlength.requiredLength }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="input">
+
+        <label><b>Password:</b></label> <br>
+        <input type="password"
+               class="text-box"
+               placeholder="Enter password"
+               formControlName="password">
+
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+
+          <div>
+            <p *ngIf="password.errors?.required" class="invalid">
+              Enter password
+            </p>
+
+            <p *ngIf="password.errors?.minlength" class="invalid">
+              Minimal length: {{ password.errors?.minlength.requiredLength }}
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button [disabled]="form.invalid" type="submit">Login</button>
+
+      <div *ngIf="error !== ''" class="invalid">
+        {{ error }}
+      </div>
+
+      <p>Don't have an account? <a routerLink="/registration">Create new!</a></p>
+
+    </div>
+
+  </div>
+</form>

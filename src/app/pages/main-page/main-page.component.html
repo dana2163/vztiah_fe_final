@@ -1,0 +1,96 @@
+<div *ngIf="user">
+
+  <div *ngIf="user.role === 'TEACHER'">
+    <div class="container">
+
+      <table>
+
+        <tr>
+          <th>№</th>
+          <th>Grade name</th>
+          <th>Count of students</th>
+        </tr>
+
+          <tr *ngFor="let grade of grades; index as index">
+            <td> {{ index + 1 }})</td>
+            <td>
+              <button [routerLink]="['/grade', grade.id]"> {{ grade.name }} </button>
+            </td>
+            <td> {{ grade.students?.length }} </td>
+          </tr>
+
+      </table>
+    </div>
+
+      <div class="container">
+        <div class="content">
+
+          <h2 class="title">Add new grade</h2>
+          <form [formGroup]="form" (ngSubmit)="createGrade()">
+
+            <div class="input">
+              <label><b>Grade name: </b></label> <br>
+              <input type="text"
+                     class="text-box"
+                     placeholder="Enter name of grade"
+                     formControlName="name">
+
+              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+
+                <div>
+                  <p *ngIf="name.errors?.required" class="invalid">
+                    Enter name
+                  </p>
+
+                  <p *ngIf="name.errors?.minlength" class="invalid">
+                    Minimal length: {{ name.errors?.minlength.requiredLength }}
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <button [disabled]="form.invalid" type="submit">Add new grade</button>
+
+          </form>
+        </div>
+      </div>
+  </div>
+
+  <div *ngIf="user.role === 'PARENT'">
+
+    <div *ngIf="userStudents">
+      <h1 class="title">Your children: </h1>
+      <div class="container">
+        <table>
+          <tr>
+            <th>№</th>
+            <th>Student name</th>
+            <th>Student surname</th>
+            <th>Parent's email</th>
+          </tr>
+
+          <ng-container *ngFor="let student of userStudents; index as index">
+
+            <tr>
+              <td> {{ index + 1 }})</td>
+              <td> {{ student.name }} </td>
+              <td> {{ student.surname }} </td>
+              <td> {{ student.parent.email }} </td>
+            </tr>
+
+          </ng-container>
+
+        </table>
+      </div>
+
+
+    </div>
+
+    <div *ngIf="!userStudents">
+      Поки жодних записів
+    </div>
+
+  </div>
+
+</div>

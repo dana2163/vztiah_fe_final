@@ -1,0 +1,23 @@
+<ul class="header">
+  <li>
+    <a routerLink="/">Main Page</a>
+  </li>
+
+  <div class="right">
+    <li *ngIf="localStorage.getItem('token') === null">
+      <a routerLink="/login">Login</a>
+    </li>
+
+    <li *ngIf="localStorage.getItem('token') === null">
+      <a routerLink="/registration">Registration</a>
+    </li>
+
+    <li *ngIf="localStorage.getItem('token') !== null">
+      <a routerLink="/profile">Profile</a>
+    </li>
+
+    <li *ngIf="localStorage.getItem('token') !== null">
+      <a (click)="logOut()" routerLink="/login">Logout</a>
+    </li>
+  </div>
+</ul>

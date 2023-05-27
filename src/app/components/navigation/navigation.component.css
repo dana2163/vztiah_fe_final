@@ -1,0 +1,38 @@
+.header {
+  margin: 5px;
+  background-color: darkgray;
+  opacity: 75%;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border: black 2px solid;
+  border-radius: 10px;
+}
+
+li {
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 24px;
+  background-color: darkgray;
+  color: black;
+}
+
+a:hover {
+  color: #25549d;
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  background-color: darkgray;
+
+  margin: 0 20px;
+}

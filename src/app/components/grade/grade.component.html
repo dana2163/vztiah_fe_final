@@ -1,0 +1,24 @@
+<h1 class="title">Назва класу - '{{ grade.name }}'</h1>
+
+<div class="container">
+  <table>
+    <tr>
+      <th>№</th>
+      <th>Student's name</th>
+      <th>Student's surname</th>
+      <th>Parent's email</th>
+    </tr>
+
+    <ng-container *ngFor="let student of grade.students; index as index">
+
+      <tr>
+        <td> {{ index + 1 }}) </td>
+        <td> {{ student.name }} </td>
+        <td> {{ student.surname }} </td>
+        <td> {{ student.parent.email }} </td>
+      </tr>
+
+    </ng-container>
+
+  </table>
+</div>

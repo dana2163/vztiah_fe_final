@@ -1,0 +1,46 @@
+<div *ngIf="grade">
+  <app-grade [grade]="grade">
+
+  </app-grade>
+
+  <div class="container">
+    <div class="content">
+      <form [formGroup]="form" (ngSubmit)="createStudent()">
+
+        <div class="input">
+          <label><b>Name: </b></label> <br>
+          <input type="text"
+                 class="text-box"
+                 placeholder="Enter name"
+                 formControlName="name">
+        </div>
+
+        <div class="input">
+
+          <label><b>Surname:</b></label> <br>
+          <input type="text"
+                 class="text-box"
+                 placeholder="Enter surname"
+                 formControlName="surname">
+        </div>
+
+        <div class="input">
+
+          <label><b>Parent's email: </b></label>
+          <input type="text"
+                 class="text-box"
+                 placeholder="Enter email"
+                 formControlName="parentEmail">
+
+          <div *ngIf="parentNotFoundMessage !== ''">
+            <p class="invalid">{{ parentNotFoundMessage }}</p>
+          </div>
+        </div>
+
+        <button type="submit">Add new student</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+

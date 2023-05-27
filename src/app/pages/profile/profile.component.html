@@ -1,0 +1,59 @@
+<div *ngIf="user">
+
+  <div class="container">
+    <div class="content">
+
+      <h2 class="title">Профіль</h2>
+      <h3>Пошта - '{{ user.email }}'</h3>
+      <h3> {{ user.role === 'TEACHER' ? 'Ви викладач' : 'Ви батько / мати' }} </h3>
+
+      <form [formGroup]="form" (ngSubmit)="saveUser()">
+
+        <div class="input">
+          <label><b>Ім'я: </b></label> <br>
+          <input type="text"
+                 class="text-box"
+                 placeholder="Введіть ім'я"
+                 formControlName="name"> <br>
+
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+
+            <div>
+              <p *ngIf="name.errors?.required" class="invalid">
+                Введіть ім'я
+              </p>
+
+              <p *ngIf="name.errors?.minlength" class="invalid">
+                Мінімальна довжина: {{ name.errors?.minlength.requiredLength }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="input">
+          <label><b>Прізвище:</b></label>
+          <input placeholder="Введіть прізвище"
+                 class="text-box"
+                 formControlName="surname">
+
+          <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)">
+            <div>
+              <p *ngIf="surname.errors?.required" class="invalid">
+                Введіть прізвище
+              </p>
+
+              <p *ngIf="surname.errors?.minlength" class="invalid">
+                Мінімальна довжина: {{ surname.errors?.minlength.requiredLength }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button [disabled]="form.invalid" type="submit">Зберегти зміни</button>
+
+
+      </form>
+    </div>
+  </div>
+
+</div>
